@@ -13,10 +13,15 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(xss());
 
-// Autorisera tous les fetch depuis les localhost ou les ip 127.0.0.1
+// Autorisera tous les fetch depuis les localhost, les ip 127.0.0.1 ou la-pince-front-production.up.railway.app
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || /^(http:\/\/localhost:\d+|http:\/\/127\.0\.0\.1:\d+)$/.test(origin)) {
+    const allowedOrigins = [
+      /^(http:\/\/localhost:\d+|http:\/\/127\.0\.0\.1:\d+)$/,
+      "https://la-pince-front-production.up.railway.app"
+    ];
+
+    if (!origin || allowedOrigins.some(pattern => typeof pattern === "string" ? pattern === origin : pattern.test(origin))) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
