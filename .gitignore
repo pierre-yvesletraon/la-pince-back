@@ -1,0 +1,6 @@
+.env
+/node_modules
+/.vscode
+
+# Sauvegardes de la base de données
+/database/backup*

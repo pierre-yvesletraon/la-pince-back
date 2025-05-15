@@ -1,0 +1,39 @@
+{
+  "name": "la-pince-back",
+  "version": "1.0.0",
+  "description": "Backend de l’application La Pince, projet de fin de formation DWWM. Ce dépôt contient l’API REST développée en Node.js, Express, et Sequelize avec une base de données PostgreSQL.",
+  "homepage": "https://github.com/O-clock-Sushi/la-pince-back#readme",
+  "bugs": {
+    "url": "https://github.com/O-clock-Sushi/la-pince-back/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/O-clock-Sushi/la-pince-back.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "dev": "node --watch server.js",
+    "start": "node server.js",
+    "db:create": "node ./src/database/createTables.js",
+    "db:restart": "node ./src/database/restartTables.js"
+  },
+  "devDependencies": {
+    "eslint": "^9.25.1"
+  },
+  "dependencies": {
+    "argon2": "^0.41.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-xss-sanitizer": "^2.0.0",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "mailchecker": "^6.0.17",
+    "pg": "^8.15.1",
+    "sequelize": "^6.37.7",
+    "validator": "^13.15.0"
+  }
+}
