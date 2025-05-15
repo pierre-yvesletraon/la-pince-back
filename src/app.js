@@ -18,7 +18,7 @@ app.use(cors({
   origin: (origin, callback) => {
     const allowedOrigins = [
       /^(http:\/\/localhost:\d+|http:\/\/127\.0\.0\.1:\d+)$/,
-      "https://la-pince-front-production.up.railway.app"
+      "https://la-pince.up.railway.app"
     ];
 
     if (!origin || allowedOrigins.some(pattern => typeof pattern === "string" ? pattern === origin : pattern.test(origin))) {
