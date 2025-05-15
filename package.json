@@ -2,13 +2,12 @@
   "name": "la-pince-back",
   "version": "1.0.0",
   "description": "Backend de l’application La Pince, projet de fin de formation DWWM. Ce dépôt contient l’API REST développée en Node.js, Express, et Sequelize avec une base de données PostgreSQL.",
-  "homepage": "https://github.com/O-clock-Sushi/la-pince-back#readme",
   "bugs": {
-    "url": "https://github.com/O-clock-Sushi/la-pince-back/issues"
+    "url": "https://github.com/La-Pince-Sushi/la-pince-back/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/O-clock-Sushi/la-pince-back.git"
+    "url": "git+https://github.com/La-Pince-Sushi/la-pince-back.git"
   },
   "license": "ISC",
   "author": "",

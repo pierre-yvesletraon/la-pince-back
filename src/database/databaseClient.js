@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { Sequelize } from "sequelize";
 
-const databaseUrl = process.env.DATABASE_URL || process.env.PG_URL;
+const databaseUrl = process.env.DATABASE_URL;
 
 export const sequelize = new Sequelize(databaseUrl, {
   logging: false,
