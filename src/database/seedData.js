@@ -15,12 +15,13 @@ export const categoryData = [
   { id: 7, name: "Loisirs" },
   { id: 8, name: "Voyages" },
   { id: 9, name: "Vêtements" },
-  { id: 10, name: "Télécom" },
+  { id: 10, name: "Abonnements" },
   { id: 11, name: "Impôts" },
   { id: 12, name: "Épargne" },
   { id: 13, name: "Crédits" },
   { id: 14, name: "Dons" },
-  { id: 15, name: "Imprévus" }
+  { id: 15, name: "Imprévus" },
+  { id: 16, name: "Autres"}
 ];
 
 
