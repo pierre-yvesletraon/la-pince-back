@@ -13,12 +13,13 @@ async function createTables() {
     await seedTables();
 
   } catch (error) {
-    console.error(error);
+    console.error("❌ Erreur lors de la création des tables :", error);
 
   } finally {
     await sequelize.close();
+    console.log("✅ Connexion à la base de données fermée");
   }
-
+  console.log("🔄 Processus de création des tables terminé");
 }
 
 createTables();
