@@ -38,7 +38,7 @@ export async function findUserById(req, res, next) {
 // UPDATE USER
 export async function updateUser(req, res, next) {
   const userId = req.user.id;
-  const { email, password } = req.body;
+  const { email, oldPassword, password } = req.body;
 
   const user = await User.findByPk(userId);
 
@@ -64,12 +64,26 @@ export async function updateUser(req, res, next) {
   }
 
   if (password) {
-    const isSame = await verify(user.password, password);
-    if (isSame) {
-      const error = new Error("Le nouveau mot de passe doit être différent de l'actuel");
+    if (!oldPassword) {
+      const error = new Error("L'ancien mot de passe est requis pour changer le mot de passe.");
       error.statusCode = 400;
       return next(error);
     }
+
+    const isOldPasswordValid = await verify(user.password, oldPassword);
+    if (!isOldPasswordValid) {
+      const error = new Error("L'ancien mot de passe est incorrect.");
+      error.statusCode = 400;
+      return next(error);
+    }
+
+    const isSame = await verify(user.password, password);
+    if (isSame) {
+      const error = new Error("Le nouveau mot de passe doit être différent de l'actuel.");
+      error.statusCode = 400;
+      return next(error);
+    }
+
     validatePassword(password);
     user.password = await hash(password, { type: 2 });
   }
