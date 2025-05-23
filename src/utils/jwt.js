@@ -2,38 +2,42 @@ import jwt from "jsonwebtoken";
 import "dotenv/config";
 
 /**
- * Génère un token JWT pour un utilisateur donné.
- * @param {object} payload - Données à inclure dans le token (ex: { id: user.id }).
- * @returns {string} token signé
+ * Generates a JWT access token for a given payload.
+ * 
+ * @param {Object} payload - The data to include in the token (e.g., { id: user.id }).
+ * @returns {string} The signed JWT token.
  */
 export function generateAccessToken(payload) {
   return jwt.sign(payload, process.env.JWT_ACCESS_SECRET, { expiresIn: process.env.JWT_ACCESS_EXPIRES_IN });
 }
 
 /**
- * Génère un JWT de rafraîchissement avec une durée plus longue.
- * @param {Object} payload - Les données à encoder dans le token.
- * @returns {string} Le token JWT signé.
+ * Generates a JWT refresh token with a longer expiration time.
+ * 
+ * @param {Object} payload - The data to encode in the token.
+ * @returns {string} The signed JWT token.
  */
 export function generateRefreshToken(payload) {
   return jwt.sign(payload, process.env.JWT_REFRESH_SECRET, { expiresIn: process.env.JWT_REFRESH_EXPIRES_IN });
 }
 
 /**
- * Vérifie un access token retourne son payload.
- * @param {string} token
- * @returns {object} payload décodé
- * @throws {Error} si le token est invalide
+ * Verifies an access token and returns its payload.
+ * 
+ * @param {string} token - The JWT access token to verify.
+ * @returns {Object} The decoded payload.
+ * @throws {Error} If the token is invalid.
  */
 export function verifyAccessToken(token) {
   return jwt.verify(token, process.env.JWT_ACCESS_SECRET);
 }
 
 /**
- * Vérifie un refresh token retourne son payload.
- * @param {string} token
- * @returns {object} payload décodé
- * @throws {Error} si le token est invalide
+ * Verifies a refresh token and returns its payload.
+ * 
+ * @param {string} token - The JWT refresh token to verify.
+ * @returns {Object} The decoded payload.
+ * @throws {Error} If the token is invalid.
  */
 export function verifyRefreshToken(token) {
   return jwt.verify(token, process.env.JWT_REFRESH_SECRET);

@@ -11,29 +11,36 @@ import { registerUser, loginUser, refreshToken } from "./controllers/authControl
 import { validateAuth } from "./middlewares/validateAuth.js";
 import { getProfile, updateUser, deleteUser } from "./controllers/userController.js";
 
-
 export const router = Router();
 
-// CATEGORIES
+/**
+ * Routes for managing categories.
+ */
 router.get("/categories", CW(getAllCategories));
 router.get("/categories/:id", validateIdParam, CW(getOneCategory));
 router.post("/categories", validateSchema, CW(createOneCategory));
 router.patch("/categories/:id", validateIdParam, validateSchema, CW(updateOneCategory));
 router.delete("/categories/:id", validateIdParam, CW(deleteOneCategory));
 
-// BUDGETS
+/**
+ * Routes for managing budgets.
+ */
 router.get("/budgets", validateAuth, CW(getAllBudgets));
 router.post("/budgets", validateAuth, validateSchema(createBudgetSchema), CW(createOneBudget));
 router.patch("/budgets/:id", validateAuth, validateIdParam, validateSchema(updateBudgetSchema), CW(updateOneBudget));
 router.delete("/budgets/:id", validateAuth, validateIdParam, CW(deleteOneBudget));
 
-// EXPENSES
+/**
+ * Routes for managing expenses.
+ */
 router.get("/expenses", validateAuth, CW(getAllExpenses));
 router.post("/expenses", validateAuth, validateSchema(createExpenseSchema), CW(createOneExpense));
 router.patch("/expenses/:id", validateAuth, validateIdParam, validateSchema(updateExpenseSchema), CW(updateOneExpense));
 router.delete("/expenses/:id", validateAuth, validateIdParam, CW(deleteOneExpense));
 
-// AUTH-USERS
+/**
+ * Routes for user authentication and profile management.
+ */
 router.post("/auth/register", CW(registerUser));
 router.post("/auth/login", CW(loginUser));
 router.post("/auth/refresh", CW(refreshToken));

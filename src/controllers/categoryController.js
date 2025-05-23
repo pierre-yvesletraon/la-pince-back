@@ -1,6 +1,27 @@
 import { Category } from "../models/index.js";
 
-export async function getAllCategories(req,res,next) {
+/**
+ * Retrieves all categories.
+ * 
+ * @swagger
+ * /categories:
+ *   get:
+ *     summary: Retrieve all categories.
+ *     tags: [Categories]
+ *     security:
+ *       - BearerAuth: []
+ *     responses:
+ *       200:
+ *         description: List of categories retrieved successfully.
+ *       401:
+ *         description: Unauthorized.
+ * 
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @param {Function} next - Express next middleware function.
+ * @returns {Promise<void>} Returns a list of categories or an error.
+ */
+export async function getAllCategories(req, res, next) {
 
   const categories = await Category.findAll({
     include: ["budgets", "expenses"],
@@ -16,6 +37,16 @@ export async function getAllCategories(req,res,next) {
   res.status(200).json(categories);
 };
 
+/**
+ * Retrieves a single category by its ID.
+ * 
+ * @param {Object} req - Express request object.
+ * @param {Object} req.params - Request parameters.
+ * @param {string} req.params.id - ID of the category to retrieve.
+ * @param {Object} res - Express response object.
+ * @param {Function} next - Express next middleware function.
+ * @returns {Promise<void>} Returns the category or an error.
+ */
 export async function getOneCategory(req, res, next) {
 
   const categoryId = req.params.id;
@@ -31,6 +62,15 @@ export async function getOneCategory(req, res, next) {
   res.status(200).json(category);
 };
 
+/**
+ * Creates a new category.
+ * 
+ * @param {Object} req - Express request object.
+ * @param {Object} req.body - Request body containing category data.
+ * @param {string} req.body.name - Name of the category.
+ * @param {Object} res - Express response object.
+ * @returns {Promise<void>} Returns the created category.
+ */
 export async function createOneCategory(req, res) {
 
   const { name } = req.body;
@@ -40,6 +80,17 @@ export async function createOneCategory(req, res) {
   res.status(201).json(createdCategory);
 };
 
+/**
+ * Updates an existing category.
+ * 
+ * @param {Object} req - Express request object.
+ * @param {Object} req.params - Request parameters.
+ * @param {string} req.params.id - ID of the category to update.
+ * @param {Object} req.body - Request body containing updated data.
+ * @param {Object} res - Express response object.
+ * @param {Function} next - Express next middleware function.
+ * @returns {Promise<void>} Returns the updated category or an error.
+ */
 export async function updateOneCategory(req, res, next) {
 
   const categoryId = req.params.id;
@@ -61,6 +112,16 @@ export async function updateOneCategory(req, res, next) {
   res.status(200).json(updatedCategory);
 };
 
+/**
+ * Deletes a category by its ID.
+ * 
+ * @param {Object} req - Express request object.
+ * @param {Object} req.params - Request parameters.
+ * @param {string} req.params.id - ID of the category to delete.
+ * @param {Object} res - Express response object.
+ * @param {Function} next - Express next middleware function.
+ * @returns {Promise<void>} Returns a success message or an error.
+ */
 export async function deleteOneCategory(req, res, next) {
 
   const categoryId = req.params.id;
