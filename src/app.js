@@ -22,6 +22,7 @@ app.use(cors({
     const allowedOrigins = [
       /^(http:\/\/localhost:\d+|http:\/\/127\.0\.0\.1:\d+)$/, // Autorise localhost et 127.0.0.1
       "https://la-pince.up.railway.app", // Autorise ton domaine en production
+      "https://la-pince-api.up.railway.app", // Autorise l'API en production
       "http://localhost:3000", // Autorise Swagger UI en local
     ];
 

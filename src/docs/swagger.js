@@ -13,12 +13,12 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: "http://localhost:3000", // URL pour le développement local
-        description: "Local server",
-      },
-      {
         url: "https://la-pince-api.up.railway.app", // URL pour la production
         description: "Production server",
+      },
+      {
+        url: "http://localhost:3000", // URL pour le développement local
+        description: "Local server",
       },
     ],
     components: {
