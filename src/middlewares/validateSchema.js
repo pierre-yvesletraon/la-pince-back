@@ -1,9 +1,28 @@
+/**
+ * Validates the request body against a given schema.
+ * 
+ * @swagger
+ * components:
+ *   requestBodies:
+ *     GenericSchema:
+ *       description: A generic schema for validating request bodies.
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             additionalProperties: true
+ * 
+ * @param {Object} schema - The validation schema (e.g., Joi schema).
+ * @returns {Function} Middleware function to validate the request body.
+ * @throws {Error} If the request body does not match the schema.
+ */
 export function validateSchema(schema) {
   return (req, res, next) => {
     const validation = schema.validate(req.body, {
-      abortEarly: false, //  ne s'arrête pas à la première erreur, renvoie toutes les erreurs de validation
-      allowUnknown: false, // rejette les champs inattendus
-      stripUnknown: true, // supprime les champs inattendus
+      abortEarly: false, // Do not stop at the first error, return all validation errors.
+      allowUnknown: false, // Reject unexpected fields.
+      stripUnknown: true, // Remove unexpected fields.
     });
 
     if (validation.error) {
@@ -14,7 +33,7 @@ export function validateSchema(schema) {
       return next(error);
     }
 
-    // remplace req.body par les données validées et nettoyées
+    // Replace req.body with the validated and sanitized data.
     req.body = validation.value;
     next();
   };

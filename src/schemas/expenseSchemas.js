@@ -1,5 +1,8 @@
 import Joi from "joi";
 
+/**
+ * Defines validation schemas for expense-related requests.
+ */
 export const createExpenseSchema = Joi.object({
   amount: Joi.number()
     .precision(2) // Autorise 2 décimales maximum
