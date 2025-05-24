@@ -17,7 +17,7 @@ const swaggerOptions = {
         description: "Local server",
       },
       {
-        url: "https://la-pince.up.railway.app", // URL pour la production
+        url: "https://la-pince-api.up.railway.app", // URL pour la production
         description: "Production server",
       },
     ],
