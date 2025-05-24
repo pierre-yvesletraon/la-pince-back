@@ -1,5 +1,8 @@
 import Joi from 'joi';
 
+/**
+ * Defines validation schemas for budget-related requests.
+ */
 export const createBudgetSchema = Joi.object({
   amount: Joi.number()
     .integer()

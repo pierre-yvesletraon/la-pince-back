@@ -4,8 +4,11 @@ import { router } from "./router.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 // @ts-ignore
 import { xss } from "express-xss-sanitizer";
+import swaggerRoutes from "./docs/routes.swagger.js";
 
-
+/**
+ * Configures and exports the Express application.
+ */
 export const app = express();
 
 app.use(express.json());
@@ -17,8 +20,9 @@ app.use(xss());
 app.use(cors({
   origin: (origin, callback) => {
     const allowedOrigins = [
-      /^(http:\/\/localhost:\d+|http:\/\/127\.0\.0\.1:\d+)$/,
-      "https://la-pince.up.railway.app"
+      /^(http:\/\/localhost:\d+|http:\/\/127\.0\.0\.1:\d+)$/, // Autorise localhost et 127.0.0.1
+      "https://la-pince.up.railway.app", // Autorise ton domaine en production
+      "http://localhost:3000", // Autorise Swagger UI en local
     ];
 
     if (!origin || allowedOrigins.some(pattern => typeof pattern === "string" ? pattern === origin : pattern.test(origin))) {
@@ -28,6 +32,9 @@ app.use(cors({
     }
   },
 }));
+
+// Add Swagger UI routes
+app.use(swaggerRoutes);
 
 app.use(router);
 

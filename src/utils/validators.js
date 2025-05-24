@@ -3,9 +3,10 @@ import mailchecker from "mailchecker";
 import dns from "node:dns/promises";
 
 /**
- * Vérifie si une valeur est un entier positif.
- * @param {string} value - La valeur à vérifier.
- * @returns {boolean} Vrai si la valeur est un entier positif, sinon faux.
+ * Checks if a value is a positive integer.
+ * 
+ * @param {string} value - The value to check.
+ * @returns {boolean} True if the value is a positive integer, otherwise false.
  */
 export function isPositiveInteger(value) {
   return /^\d+$/.test(value);
@@ -17,7 +18,7 @@ export function isPositiveInteger(value) {
  * Checks:
  * - Format validity
  * - Disposable/temporary email detection
- * - Existence of the domain and its ability to receive emails (via MX records)
+ * - Existence of the domain and its ability to receive emails (via MX records).
  *
  * @param {string} email - The email address to validate.
  * @returns {Promise<string>} The cleaned and validated email.
@@ -65,30 +66,60 @@ export async function validateEmail(email) {
   return email.trim().toLowerCase();
 }
 
+/**
+ * Checks if the password meets the minimum length requirement.
+ * 
+ * @param {string} password - The password to check.
+ * @param {string[]} details - The array to store error messages.
+ */
 function checkPasswordLength(password, details) {
   if (password.length < 8) {
     details.push("Le mot de passe doit comporter au moins 8 caractères.");
   }
 }
 
+/**
+ * Checks if the password contains at least one lowercase letter.
+ * 
+ * @param {string} password - The password to check.
+ * @param {string[]} details - The array to store error messages.
+ */
 function checkPasswordLowercase(password, details) {
   if (!/[a-z]/.test(password)) {
     details.push("Le mot de passe doit contenir au moins une minuscule.");
   }
 }
 
+/**
+ * Checks if the password contains at least one uppercase letter.
+ * 
+ * @param {string} password - The password to check.
+ * @param {string[]} details - The array to store error messages.
+ */
 function checkPasswordUppercase(password, details) {
   if (!/[A-Z]/.test(password)) {
     details.push("Le mot de passe doit contenir au moins une majuscule.");
   }
 }
 
+/**
+ * Checks if the password contains at least one number.
+ * 
+ * @param {string} password - The password to check.
+ * @param {string[]} details - The array to store error messages.
+ */
 function checkPasswordNumber(password, details) {
   if (!/[0-9]/.test(password)) {
     details.push("Le mot de passe doit contenir au moins un chiffre.");
   }
 }
 
+/**
+ * Checks if the password contains at least one symbol.
+ * 
+ * @param {string} password - The password to check.
+ * @param {string[]} details - The array to store error messages.
+ */
 function checkPasswordSymbol(password, details) {
   if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
     details.push("Le mot de passe doit contenir au moins un symbole.");
